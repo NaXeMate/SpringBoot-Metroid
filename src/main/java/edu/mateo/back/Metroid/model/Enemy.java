@@ -98,6 +98,4 @@ public class Enemy {
     public void setStats(CombatStats stats) {
         this.stats = stats;
     }
-
-
 }

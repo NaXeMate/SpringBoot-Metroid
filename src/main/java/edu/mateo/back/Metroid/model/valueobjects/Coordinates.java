@@ -4,12 +4,12 @@ import jakarta.persistence.Embeddable;
 
 @Embeddable
 public final class Coordinates {
-    private final double latitude;
-    private final double altitude;
-    private final Integer longitude;
+    private final Double latitude;
+    private final Integer altitude;
+    private final Double longitude;
 
-    public Coordinates(double latitude, double altitude, Integer longitude) {
-        if (latitude == 0.0 || longitude == null || altitude == 0.0) {
+    public Coordinates(Double latitude, Integer altitude, Double longitude) {
+        if (latitude == 0.0 || longitude == 0.0 || altitude == 0) {
             throw new IllegalArgumentException("Coordinates cannot be null or zero.");
         }
         if (latitude < -90.0 || latitude > 90.0) {
@@ -29,8 +29,8 @@ public final class Coordinates {
 
     protected Coordinates() {
         this.latitude = 0.0;
-        this.altitude = 0.0;
-        this.longitude = 0;
+        this.altitude = 0;
+        this.longitude = 0.0;
     }
 
     public double distanceTo (Coordinates coordinates) {
@@ -86,7 +86,7 @@ public final class Coordinates {
         result = prime * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(altitude);
         result = prime * result + (int) (temp ^ (temp >>> 32));
-        result = prime * result + ((longitude == null) ? 0 : longitude.hashCode());
+        result = prime * result + ((longitude == 0.0) ? 0 : longitude.hashCode());
         return result;
     }
 

@@ -11,7 +11,10 @@ public final class EnergyStatus {
     private final int maxEnergy;
 
     public EnergyStatus(int energyTanks, int reserveTanks, int currentEnergy, int maxEnergy) {
-        if (energyTanks <= 0 || maxEnergy <= 99) {
+        
+        maxEnergy = energyTanks * 99;
+        
+        if (energyTanks <= 0 || maxEnergy < 99) {
             throw new IllegalArgumentException("One energy tank is required for the Power Suit in order to function properly. Each tank provides 99 energy units.");
         }
 
