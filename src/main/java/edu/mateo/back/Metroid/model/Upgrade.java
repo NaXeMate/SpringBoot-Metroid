@@ -1,5 +1,8 @@
 package edu.mateo.back.Metroid.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.mateo.back.Metroid.model.enumerated.EnergyType;
 import edu.mateo.back.Metroid.model.enumerated.TechOrigin;
 import edu.mateo.back.Metroid.model.enumerated.UpgradeClass;
@@ -11,6 +14,10 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -36,26 +43,28 @@ public class Upgrade {
     private EnergyType energyType;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "tech_origin", nullable = false)
+    @Column(name = "tech_origin", nullable = false, length = 50)
     private TechOrigin techOrigin;
 
-    @Column(name = "upgrade_requirements", nullable = true)
+    @ManyToOne
+    @JoinColumn(name = "required_upgrade_id")
     private Upgrade requiredUpgrade;
+
+    @ManyToOne
+    @JoinColumn(name = "power_suit_id")
+    private PowerSuit powerSuit;
+
+    @ManyToMany
+    @JoinTable(
+        name = "region_update",
+        joinColumns = @JoinColumn(name = "upgrade_Id"),
+        inverseJoinColumns = @JoinColumn(name = "region_Id"))
+    private List<Region> locations = new ArrayList<>();
 
     public Upgrade() {}
 
-    public Upgrade(String name, UpgradeClass upgradeClass, String description, EnergyType energyType,
-                   TechOrigin techOrigin, Upgrade requiredUpgrade) {
-        this.name = name;
-        this.upgradeClass = upgradeClass;
-        this.description = description;
-        this.energyType = energyType;
-        this.techOrigin = techOrigin;
-        this.requiredUpgrade = requiredUpgrade;
-    }
-
     public Upgrade(Long upgrade_Id, String name, UpgradeClass upgradeClass, String description, EnergyType energyType,
-            TechOrigin techOrigin, Upgrade requiredUpgrade) {
+            TechOrigin techOrigin, Upgrade requiredUpgrade, PowerSuit powerSuit, List<Region> locations) {
         this.upgrade_Id = upgrade_Id;
         this.name = name;
         this.upgradeClass = upgradeClass;
@@ -63,6 +72,20 @@ public class Upgrade {
         this.energyType = energyType;
         this.techOrigin = techOrigin;
         this.requiredUpgrade = requiredUpgrade;
+        this.powerSuit = powerSuit;
+        this.locations = locations;
+    }
+
+    public Upgrade(String name, UpgradeClass upgradeClass, String description, EnergyType energyType,
+            TechOrigin techOrigin, Upgrade requiredUpgrade, PowerSuit powerSuit, List<Region> locations) {
+        this.name = name;
+        this.upgradeClass = upgradeClass;
+        this.description = description;
+        this.energyType = energyType;
+        this.techOrigin = techOrigin;
+        this.requiredUpgrade = requiredUpgrade;
+        this.powerSuit = powerSuit;
+        this.locations = locations;
     }
 
     public Long getUpgrade_Id() {
@@ -121,5 +144,19 @@ public class Upgrade {
         this.requiredUpgrade = requiredUpgrade;
     }
 
-    
+    public PowerSuit getPowerSuit() {
+        return powerSuit;
+    }
+
+    public void setPowerSuit(PowerSuit powerSuit) {
+        this.powerSuit = powerSuit;
+    }
+
+    public List<Region> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(List<Region> locations) {
+        this.locations = locations;
+    }
 }

@@ -1,5 +1,8 @@
 package edu.mateo.back.Metroid.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.mateo.back.Metroid.model.enumerated.Biome;
 import edu.mateo.back.Metroid.model.enumerated.Climate;
 import edu.mateo.back.Metroid.model.enumerated.Planet;
@@ -15,6 +18,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,9 +33,11 @@ public class Region {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "planet", nullable = false)
     private Planet planet;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "biome", nullable = false)
     private Biome biome;
 
@@ -53,10 +60,17 @@ public class Region {
     @Column(name = "coordinates", nullable = false)
     private Coordinates coordinates;
 
+    @ManyToMany(mappedBy = "locations")
+    private List<Upgrade> upgradesAvailable;
+
+    @OneToMany (mappedBy = "region")
+    private List<Region_Enemy> enemyEncounters = new ArrayList<>();
+
     public Region() {}
 
     public Region(Long region_Id, String name, Planet planet, Biome biome, int difficultyLevel, Climate climate,
-                  double explorationPercentage, Coordinates coordinates) {
+                  double explorationPercentage, Coordinates coordinates, List<Upgrade> upgradesAvailable,
+                  List<Region_Enemy> enemyEncounters) {
         
         if (explorationPercentage < 0.0 || explorationPercentage > 100.0) {
             throw new IllegalArgumentException("Exploration percentage must be between 0 and 100.");
@@ -81,10 +95,13 @@ public class Region {
         this.difficultyLevel = difficultyLevel;
         this.explorationPercentage = explorationPercentage;
         this.coordinates = coordinates;
+        this.upgradesAvailable = upgradesAvailable;
+        this.enemyEncounters = enemyEncounters;
     }
 
     public Region(String name, Planet planet, Biome biome, int difficultyLevel, Climate climate,
-                  double explorationPercentage, Coordinates coordinates) {
+                  double explorationPercentage, Coordinates coordinates, List<Upgrade> upgradesAvailable,
+                  List<Region_Enemy> enemyEncounters) {
         
         if (explorationPercentage < 0.0 || explorationPercentage > 100.0) {
             throw new IllegalArgumentException("Exploration percentage must be between 0 and 100.");
@@ -108,6 +125,8 @@ public class Region {
         this.difficultyLevel = difficultyLevel;
         this.explorationPercentage = explorationPercentage;
         this.coordinates = coordinates;
+        this.upgradesAvailable = upgradesAvailable;
+        this.enemyEncounters = enemyEncounters;
     }
 
     public Long getRegion_Id() {
@@ -170,5 +189,27 @@ public class Region {
         this.coordinates = coordinates;
     }
 
-    
+    public Climate getClimate() {
+        return climate;
+    }
+
+    public void setClimate(Climate climate) {
+        this.climate = climate;
+    }
+
+    public List<Upgrade> getUpgradesAvailable() {
+        return upgradesAvailable;
+    }
+
+    public void setUpgradesAvailable(List<Upgrade> upgradesAvailable) {
+        this.upgradesAvailable = upgradesAvailable;
+    }
+
+    public List<Region_Enemy> getEnemyEncounters() {
+        return enemyEncounters;
+    }
+
+    public void setEnemyEncounters(List<Region_Enemy> enemyEncounters) {
+        this.enemyEncounters = enemyEncounters;
+    }
 }
