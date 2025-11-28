@@ -5,7 +5,6 @@ public enum Biome {
     RUINS,
     VOLCANIC,
     ARTIC,
-    MINES,
     RADIACTIVE,
     CAVERNS,
     UNDERGROUND,

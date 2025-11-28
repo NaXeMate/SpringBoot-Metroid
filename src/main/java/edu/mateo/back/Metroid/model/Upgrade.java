@@ -1,7 +1,5 @@
 package edu.mateo.back.Metroid.model;
 
-import java.util.List;
-
 import edu.mateo.back.Metroid.model.enumerated.EnergyType;
 import edu.mateo.back.Metroid.model.enumerated.TechOrigin;
 import edu.mateo.back.Metroid.model.enumerated.UpgradeClass;
@@ -42,29 +40,29 @@ public class Upgrade {
     private TechOrigin techOrigin;
 
     @Column(name = "upgrade_requirements", nullable = true)
-    private List<Upgrade> requiredUpgrades;
+    private Upgrade requiredUpgrade;
 
     public Upgrade() {}
 
     public Upgrade(String name, UpgradeClass upgradeClass, String description, EnergyType energyType,
-                   TechOrigin techOrigin, List<Upgrade> requiredUpgrades) {
+                   TechOrigin techOrigin, Upgrade requiredUpgrade) {
         this.name = name;
         this.upgradeClass = upgradeClass;
         this.description = description;
         this.energyType = energyType;
         this.techOrigin = techOrigin;
-        this.requiredUpgrades = requiredUpgrades;
+        this.requiredUpgrade = requiredUpgrade;
     }
 
     public Upgrade(Long upgrade_Id, String name, UpgradeClass upgradeClass, String description, EnergyType energyType,
-            TechOrigin techOrigin, List<Upgrade> requiredUpgrades) {
+            TechOrigin techOrigin, Upgrade requiredUpgrade) {
         this.upgrade_Id = upgrade_Id;
         this.name = name;
         this.upgradeClass = upgradeClass;
         this.description = description;
         this.energyType = energyType;
         this.techOrigin = techOrigin;
-        this.requiredUpgrades = requiredUpgrades;
+        this.requiredUpgrade = requiredUpgrade;
     }
 
     public Long getUpgrade_Id() {
@@ -115,12 +113,12 @@ public class Upgrade {
         this.techOrigin = techOrigin;
     }
 
-    public List<Upgrade> getRequiredUpgrades() {
-        return requiredUpgrades;
+    public Upgrade getRequiredUpgrade() {
+        return requiredUpgrade;
     }
 
-    public void setRequiredUpgrades(List<Upgrade> requiredUpgrades) {
-        this.requiredUpgrades = requiredUpgrades;
+    public void setRequiredUpgrade(Upgrade requiredUpgrade) {
+        this.requiredUpgrade = requiredUpgrade;
     }
 
     

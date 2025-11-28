@@ -8,5 +8,6 @@ public enum EnergyType {
     DARK,
     LIGHT,
     PHAZON,
-    AEION
+    AEION,
+    NONE
 }

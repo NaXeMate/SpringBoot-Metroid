@@ -4,6 +4,7 @@ public enum UpgradeClass {
     BEAM,
     MORPH_BALL,
     SUIT,
+    VISOR,
     MISC,
     PHAZON
 }
