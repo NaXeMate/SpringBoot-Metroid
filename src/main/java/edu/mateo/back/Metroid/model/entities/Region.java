@@ -64,13 +64,13 @@ public class Region {
     private List<Upgrade> upgradesAvailable = new ArrayList<>();
 
     @OneToMany (mappedBy = "region")
-    private List<Region_Enemy> enemyEncounters = new ArrayList<>();
+    private List<RegionEnemy> enemyEncounters = new ArrayList<>();
 
     public Region() {}
 
     public Region(Long region_id, String name, Planet planet, Biome biome, int difficultyLevel, Climate climate,
                   double explorationPercentage, Coordinates coordinates, List<Upgrade> upgradesAvailable,
-                  List<Region_Enemy> enemyEncounters) {
+                  List<RegionEnemy> enemyEncounters) {
         
         if (explorationPercentage < 0.0 || explorationPercentage > 100.0) {
             throw new IllegalArgumentException("Exploration percentage must be between 0 and 100.");
@@ -101,7 +101,7 @@ public class Region {
 
     public Region(String name, Planet planet, Biome biome, int difficultyLevel, Climate climate,
                   double explorationPercentage, Coordinates coordinates, List<Upgrade> upgradesAvailable,
-                  List<Region_Enemy> enemyEncounters) {
+                  List<RegionEnemy> enemyEncounters) {
         
         if (explorationPercentage < 0.0 || explorationPercentage > 100.0) {
             throw new IllegalArgumentException("Exploration percentage must be between 0 and 100.");
@@ -205,11 +205,11 @@ public class Region {
         this.upgradesAvailable = upgradesAvailable;
     }
 
-    public List<Region_Enemy> getEnemyEncounters() {
+    public List<RegionEnemy> getEnemyEncounters() {
         return enemyEncounters;
     }
 
-    public void setEnemyEncounters(List<Region_Enemy> enemyEncounters) {
+    public void setEnemyEncounters(List<RegionEnemy> enemyEncounters) {
         this.enemyEncounters = enemyEncounters;
     }
 }

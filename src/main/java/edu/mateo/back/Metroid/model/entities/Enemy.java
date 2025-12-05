@@ -47,7 +47,7 @@ public class Enemy {
     private CombatStats stats;
 
     @OneToMany (mappedBy = "enemy")
-    private List<Region_Enemy> locations = new ArrayList<>();
+    private List<RegionEnemy> locations = new ArrayList<>();
 
     public Enemy() {}
 

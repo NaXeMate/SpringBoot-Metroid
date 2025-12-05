@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "region_enemy")
-public class Region_Enemy {
+public class RegionEnemy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,9 +31,9 @@ public class Region_Enemy {
     @Column(name = "spawn_frequency")
     private int spawnFrequency;
 
-    public Region_Enemy() {}
+    public RegionEnemy() {}
 
-    public Region_Enemy(Long regionEnemyId, Region region, Enemy enemy, int numDefeated, int spawnFrequency) {
+    public RegionEnemy(Long regionEnemyId, Region region, Enemy enemy, int numDefeated, int spawnFrequency) {
         this.regionEnemyId = regionEnemyId;
         this.region = region;
         this.enemy = enemy;
@@ -41,7 +41,7 @@ public class Region_Enemy {
         this.spawnFrequency = spawnFrequency;
     }
 
-    public Region_Enemy(Region region, Enemy enemy, int numDefeated, int spawnFrequency) {
+    public RegionEnemy(Region region, Enemy enemy, int numDefeated, int spawnFrequency) {
         this.region = region;
         this.enemy = enemy;
         this.numDefeated = numDefeated;
