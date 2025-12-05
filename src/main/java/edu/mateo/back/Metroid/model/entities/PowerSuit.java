@@ -1,4 +1,4 @@
-package edu.mateo.back.Metroid.model;
+package edu.mateo.back.Metroid.model.entities;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,6 +14,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -47,7 +48,8 @@ public class PowerSuit {
     })
     private DefenseRating defenseRating;
 
-    @Column(name = "upgrades", nullable = true)
+    
+    @OneToMany(mappedBy = "powerSuit")
     private List<Upgrade> upgrades;
 
     public PowerSuit() {}

@@ -1,4 +1,7 @@
-package edu.mateo.back.Metroid.model;
+package edu.mateo.back.Metroid.model.entities;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.mateo.back.Metroid.model.enumerated.EnergyType;
 import edu.mateo.back.Metroid.model.enumerated.TechOrigin;
@@ -11,6 +14,10 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,7 +26,7 @@ public class Upgrade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long upgrade_Id;
+    private Long upgrade_id;
 
     @Column(nullable = false)
     private String name;
@@ -36,41 +43,57 @@ public class Upgrade {
     private EnergyType energyType;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "tech_origin", nullable = false)
+    @Column(name = "tech_origin", nullable = false, length = 50)
     private TechOrigin techOrigin;
 
-    @Column(name = "upgrade_requirements", nullable = true)
+    @ManyToOne
+    @JoinColumn(name = "required_upgrade_id")
     private Upgrade requiredUpgrade;
+
+    @ManyToOne
+    @JoinColumn(name = "power_suit_id")
+    private PowerSuit powerSuit;
+
+    @ManyToMany
+    @JoinTable(
+        name = "region_upgrade",
+        joinColumns = @JoinColumn(name = "upgrade_id"),
+        inverseJoinColumns = @JoinColumn(name = "region_id"))
+    private List<Region> locations = new ArrayList<>();
 
     public Upgrade() {}
 
+    public Upgrade(Long upgrade_id, String name, UpgradeClass upgradeClass, String description, EnergyType energyType,
+            TechOrigin techOrigin, Upgrade requiredUpgrade, PowerSuit powerSuit, List<Region> locations) {
+        this.upgrade_id = upgrade_id;
+        this.name = name;
+        this.upgradeClass = upgradeClass;
+        this.description = description;
+        this.energyType = energyType;
+        this.techOrigin = techOrigin;
+        this.requiredUpgrade = requiredUpgrade;
+        this.powerSuit = powerSuit;
+        this.locations = locations;
+    }
+
     public Upgrade(String name, UpgradeClass upgradeClass, String description, EnergyType energyType,
-                   TechOrigin techOrigin, Upgrade requiredUpgrade) {
+            TechOrigin techOrigin, Upgrade requiredUpgrade, PowerSuit powerSuit, List<Region> locations) {
         this.name = name;
         this.upgradeClass = upgradeClass;
         this.description = description;
         this.energyType = energyType;
         this.techOrigin = techOrigin;
         this.requiredUpgrade = requiredUpgrade;
+        this.powerSuit = powerSuit;
+        this.locations = locations;
     }
 
-    public Upgrade(Long upgrade_Id, String name, UpgradeClass upgradeClass, String description, EnergyType energyType,
-            TechOrigin techOrigin, Upgrade requiredUpgrade) {
-        this.upgrade_Id = upgrade_Id;
-        this.name = name;
-        this.upgradeClass = upgradeClass;
-        this.description = description;
-        this.energyType = energyType;
-        this.techOrigin = techOrigin;
-        this.requiredUpgrade = requiredUpgrade;
+    public Long getUpgrade_id() {
+        return upgrade_id;
     }
 
-    public Long getUpgrade_Id() {
-        return upgrade_Id;
-    }
-
-    public void setUpgrade_Id(Long upgrade_Id) {
-        this.upgrade_Id = upgrade_Id;
+    public void setUpgrade_id(Long upgrade_id) {
+        this.upgrade_id = upgrade_id;
     }
 
     public String getName() {
@@ -121,5 +144,19 @@ public class Upgrade {
         this.requiredUpgrade = requiredUpgrade;
     }
 
-    
+    public PowerSuit getPowerSuit() {
+        return powerSuit;
+    }
+
+    public void setPowerSuit(PowerSuit powerSuit) {
+        this.powerSuit = powerSuit;
+    }
+
+    public List<Region> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(List<Region> locations) {
+        this.locations = locations;
+    }
 }

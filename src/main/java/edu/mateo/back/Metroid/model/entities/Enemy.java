@@ -1,4 +1,7 @@
-package edu.mateo.back.Metroid.model;
+package edu.mateo.back.Metroid.model.entities;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.mateo.back.Metroid.model.enumerated.EnemyClass;
 import edu.mateo.back.Metroid.model.valueobjects.CombatStats;
@@ -13,6 +16,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -41,6 +45,9 @@ public class Enemy {
         @AttributeOverride(name = "dangerLevel", column = @Column(name = "danger_level", nullable = false))
     })
     private CombatStats stats;
+
+    @OneToMany (mappedBy = "enemy")
+    private List<Region_Enemy> locations = new ArrayList<>();
 
     public Enemy() {}
 
