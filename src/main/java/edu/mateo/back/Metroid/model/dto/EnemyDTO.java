@@ -1,8 +1,10 @@
 package edu.mateo.back.Metroid.model.dto;
 
+import edu.mateo.back.Metroid.model.enumerated.EnemyClass;
+
 public record EnemyDTO(
     String name,
-    String enemyClass,
+    EnemyClass enemyClass,
     String description,
     Integer healthPoints,
     Integer attackPower,

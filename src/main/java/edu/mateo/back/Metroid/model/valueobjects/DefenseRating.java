@@ -5,11 +5,11 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public final class DefenseRating {
 
-    private final int damageReduction;
+    private final Integer damageReduction;
     private final boolean heatResistance;
     private final boolean radiationResistance;
 
-    public DefenseRating(int damageReduction, boolean heatResistance, boolean radiationResistance) {
+    public DefenseRating(Integer damageReduction, boolean heatResistance, boolean radiationResistance) {
         if (damageReduction < 30) {
             throw new IllegalArgumentException("The Power Suit provides a minimum of 30% damage reduction.");
         }
@@ -49,7 +49,7 @@ public final class DefenseRating {
         this.radiationResistance = false;
     }
 
-    public int getDamageReduction() {
+    public Integer getDamageReduction() {
         return damageReduction;
     }
 

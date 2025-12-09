@@ -5,21 +5,21 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public final class EnergyStatus {
 
-    private final int energyTanks;
-    private final int reserveTanks;
-    private final int currentEnergy;
-    private final int maxEnergy;
+    private final Integer energyTanks;
+    private final Integer reserveTanks;
+    private final Integer currentEnergy;
+    private final Integer maxEnergy;
 
-    public EnergyStatus(int energyTanks, int reserveTanks, int currentEnergy, int maxEnergy) {
+    public EnergyStatus(Integer energyTanks, Integer reserveTanks, Integer currentEnergy, Integer maxEnergy) {
         
-        maxEnergy = energyTanks * 99;
+        maxEnergy = (energyTanks * 100) + 99;
         
-        if (energyTanks <= 0 || maxEnergy < 99) {
-            throw new IllegalArgumentException("One energy tank is required for the Power Suit in order to function properly. Each tank provides 99 energy units.");
+        if (maxEnergy < 99) {
+            throw new IllegalArgumentException("The Power Suit has its own Energy Tank, which has 99 energy units. Each aditional tank provides 100 energy units.");
         }
 
         if (currentEnergy > maxEnergy) {
-            throw new IllegalArgumentException("Current energy cannot exceed maximum energy capacity.");
+            throw new IllegalArgumentException("Current energy cannot exceed the maximum energy capacity.");
         }
 
         if (reserveTanks < 0) {
@@ -43,19 +43,19 @@ public final class EnergyStatus {
         this.maxEnergy = 0;
     }
 
-    public int getEnergyTanks() {
+    public Integer getEnergyTanks() {
         return energyTanks;
     }
 
-    public int getReserveTanks() {
+    public Integer getReserveTanks() {
         return reserveTanks;
     }
 
-    public int getCurrentEnergy() {
+    public Integer getCurrentEnergy() {
         return currentEnergy;
     }
 
-    public int getMaxEnergy() {
+    public Integer getMaxEnergy() {
         return maxEnergy;
     }
 

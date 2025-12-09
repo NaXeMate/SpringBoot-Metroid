@@ -6,11 +6,10 @@ import java.util.List;
 public record PowerSuitDTO(
     String name,
     LocalDate installationDate,
-    int energyTanks,
-    int reserveTanks,
-    int damageReduction,
+    Integer energyTanks,
+    Integer reserveTanks,
+    Integer damageReduction,
     boolean heatResistance,
     boolean radiationResistance,
-    List<UpgradeDTO> upgrades
-    
+    List<Long> installedUpgradesId
 ) {}

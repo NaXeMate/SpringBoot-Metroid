@@ -1,12 +1,14 @@
 package edu.mateo.back.Metroid.model.dto;
 
-import java.util.List;
+import edu.mateo.back.Metroid.model.enumerated.EnergyType;
+import edu.mateo.back.Metroid.model.enumerated.TechOrigin;
+import edu.mateo.back.Metroid.model.enumerated.UpgradeClass;
 
 public record UpgradeDTO(
     String name,
-    String upgradeClass,
+    UpgradeClass upgradeClass,
     String description,
-    String energyType,
-    String techOrigin,
-    List<UpgradeDTO> requiredUpgrades
+    EnergyType energyType,
+    TechOrigin techOrigin,
+    Long requiredUpgradeId
 ) {}

@@ -77,6 +77,22 @@ public final class CombatStats {
         return 0;
     }
 
+    public Integer getHealthPoints() {
+        return healthPoints;
+    }
+    
+    public Integer getAttackPower() {
+        return attackPower;
+    }
+    
+    public Double getSpeed() {
+        return speed;
+    }
+    
+    public Integer getDangerLevel() {
+        return dangerLevel;
+    }    
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
