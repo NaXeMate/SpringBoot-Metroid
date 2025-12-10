@@ -80,8 +80,12 @@ public class RegionController {
     }
     
     // ============
-    // ENDPOINTS 
+    // ENDPOINT
     // ============
+
+    /**
+     * Returns all regions that belong to the specified planet (e.g. ZEBES, TALLON_IV, SR_388).
+     */
     
     @GetMapping("/planet/{planet}")
     public List<RegionDTO> getRegionsByPlanet(@PathVariable("planet") String planet) {
@@ -91,5 +95,4 @@ public class RegionController {
         
         return regions.stream().map(regionMapper::toDTO).toList();
     }
-    
 }

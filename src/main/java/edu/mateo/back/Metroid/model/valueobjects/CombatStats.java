@@ -36,7 +36,9 @@ public final class CombatStats {
         this.dangerLevel = 0;
     }
 
-    public double timeToDefeat(int samusDPS) {
+    /** 
+     * The following methods are not used in the program at all, but could be implemented later.
+     * public double timeToDefeat(int samusDPS) {
         if (samusDPS <= 0 || healthPoints == null || healthPoints <= 0) {
             return 0.0;
         }
@@ -76,6 +78,7 @@ public final class CombatStats {
         if (thisPower < otherPower * 0.9) return -1;
         return 0;
     }
+*/
 
     public Integer getHealthPoints() {
         return healthPoints;

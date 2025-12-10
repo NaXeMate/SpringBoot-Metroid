@@ -84,6 +84,10 @@ public class UpgradeController {
     // ENDPOINT
     // ============
 
+    /**
+     * Returns all upgrades that belong to the specified upgrade class (e.g. SUIT, BEAM, MORPH_BALL).
+    */
+
     @GetMapping("/class/{upgradeClass}")
     public List<UpgradeDTO> getUpgradesByClass(@PathVariable("upgradeClass") String upgradeClass) {
         UpgradeClass stringClass = UpgradeClass.valueOf(upgradeClass.toUpperCase());

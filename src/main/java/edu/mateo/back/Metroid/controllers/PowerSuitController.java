@@ -83,6 +83,10 @@ public class PowerSuitController {
     // ENDPOINT
     // ============
 
+    /**
+     * Returns the remaining energy of a Power Suit as a percentage based on its current and maximum energy.
+     */
+
     @GetMapping("/{id}/energy-percentage")
     public int getEnergyPercentage(@PathVariable("id") Long id) {
         PowerSuit suit = suitService.getSuitById(id);

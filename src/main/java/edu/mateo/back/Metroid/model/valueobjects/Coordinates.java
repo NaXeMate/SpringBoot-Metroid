@@ -53,6 +53,8 @@ public final class Coordinates {
         return PLANET_RADIUS * c;
     }
 
+    /** 
+     * The following methods are not used in the program at all, but could be implemented later.
     public boolean isUnderwater() {
         return altitude < 0;
     }
@@ -64,6 +66,8 @@ public final class Coordinates {
     public boolean isNearby(Coordinates coordinates) {
         return distanceTo(coordinates) <= 50.0;
     }
+
+    */
 
     public double getLatitude() {
         return latitude;

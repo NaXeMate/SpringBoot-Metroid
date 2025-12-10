@@ -85,7 +85,7 @@ public class EnemyController {
     // ============
 
     /**
-     * Get enemies by its class
+     * Returns all enemies that belong to the specified enemy class (e.g. COMMON, BOSS, FINAL_BOSS).
      */
 
     @GetMapping("/by-class/{enemyClass}")
@@ -98,7 +98,7 @@ public class EnemyController {
     }
 
     /**
-     * Get tactical info (description of the enemy's combat data)
+     * Returns a short tactical description string for a specific enemy based on its combat statistics.
      */
 
     @GetMapping("/{id}/tactical-info")
