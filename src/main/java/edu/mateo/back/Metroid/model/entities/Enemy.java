@@ -66,6 +66,17 @@ public class Enemy {
         this.stats = stats;
     }
 
+    public String getTacticalDescription() {
+        String tacticalInfo = "Tactical Description of " + name + ":\n" 
+        + "Class: " + enemyClass + "\n"
+        + "HP: " + stats.getHealthPoints() + "\n"
+        + "Attack Power: " + stats.getAttackPower() + "\n"
+        + "Speed: " + stats.getSpeed() + "\n"
+        + "Conclusion of the analysis: " + stats.getDangerLevel() + "on the danger level scale.";
+
+        return tacticalInfo;
+    }
+
     public Long getEnemy_Id() {
         return enemy_Id;
     }
@@ -104,5 +115,11 @@ public class Enemy {
 
     public void setStats(CombatStats stats) {
         this.stats = stats;
+    }
+
+    @Override
+    public String toString() {
+        return "Enemy " + name + ":\n[\nClass: " + enemyClass + ";\nDescription: " + description +
+         ";\nLocations: " + locations + "\n]";
     }
 }

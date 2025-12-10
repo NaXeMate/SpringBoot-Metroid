@@ -86,5 +86,14 @@ public class RegionEnemy {
 
     public void setSpawnFrequency(int spawnFrequency) {
         this.spawnFrequency = spawnFrequency;
-    }    
+    }
+
+    @Override
+    public String toString() {
+        return "Register for the region " + region.getName() + " and the enemy" + enemy.getName() 
+            + ".\n[\nNumber of enemies defeated: " + numDefeated
+            + ";\nSpawn Frequency: " + spawnFrequency + ";\n]";
+    }
+
+    
 }

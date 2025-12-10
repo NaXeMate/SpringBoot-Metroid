@@ -159,4 +159,12 @@ public class Upgrade {
     public void setLocations(List<Region> locations) {
         this.locations = locations;
     }
+
+    @Override
+    public String toString() {
+        return "Upgrade " + name + ":\n[\nClass: " + upgradeClass + ";\nDescription: " + description
+                + ";\nEnergy Type: " + energyType + ";\nOrigin: " + techOrigin 
+                + ";\nRequired Upgrade: " + requiredUpgrade + "\nLocations: " + locations
+                + ";\n]";
+    }
 }

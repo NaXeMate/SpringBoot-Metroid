@@ -212,4 +212,11 @@ public class Region {
     public void setEnemyEncounters(List<RegionEnemy> enemyEncounters) {
         this.enemyEncounters = enemyEncounters;
     }
+
+    @Override
+    public String toString() {
+        return "Region " + name + ":\n[\nPlanet: " + planet + ";\nBiome: " + biome + ";\nClimate: " + climate
+                + ";\nExploration Percentage: " + explorationPercentage + ";\nLatitude: " + coordinates.getLatitude()
+                + ";\nAltitude: " + coordinates.getAltitude() + ";\nLongitude: " + coordinates.getLongitude() + ";\n]";
+    }
 }

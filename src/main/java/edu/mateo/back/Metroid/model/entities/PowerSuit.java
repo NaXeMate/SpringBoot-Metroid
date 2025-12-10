@@ -123,9 +123,9 @@ public class PowerSuit {
 
     @Override
     public String toString() {
-        return "PowerSuit [powerSuit_Id=" + powerSuit_Id + ", name=" + name + ", installationDate=" + installationDate + ", energyStatus="
-                + energyStatus + ", defenseRating=" + defenseRating + ", upgrades=" + upgrades + "]";
+        return "Suit " + name + ":\n[\nInstallation Date: " + installationDate + ";\nCurrent energy level: " + energyStatus.getCurrentEnergy()
+                + ";\nEnergy Tanks acquired: " + energyStatus.getEnergyTanks() + ";\nReserve Tanks acquired: " + energyStatus.getReserveTanks()
+                + ";\nHeat Resistance: " + defenseRating.isHeatResistance() + ";\nRadiation Resistance: " + defenseRating.isRadiationResistance()
+                + ";\nUpgrades acquired: " + upgrades + ";\n]";
     }
-
-    
 }
