@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.mateo.back.Metroid.model.entities.Upgrade;
+import edu.mateo.back.Metroid.model.enumerated.UpgradeClass;
 import edu.mateo.back.Metroid.repository.UpgradeRepository;
 import edu.mateo.back.Metroid.service.interfaces.IUpgradeService;
 
@@ -53,6 +54,11 @@ public class UpgradeService implements IUpgradeService {
         Upgrade upgradeToDelete = upgradeRepo.findById(id).orElseThrow();
         upgradeRepo.deleteById(id);
         System.out.println("Upgrade " + upgradeToDelete.getName() + " deleted from the logbook.");
+    }
+
+    @Override
+    public List<Upgrade> getUpgradesByClass(UpgradeClass upgradeClass) {
+        return upgradeRepo.findByUpgradeClass(upgradeClass);
     }
 
 }

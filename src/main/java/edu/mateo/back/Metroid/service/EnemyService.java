@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.mateo.back.Metroid.model.entities.Enemy;
+import edu.mateo.back.Metroid.model.enumerated.EnemyClass;
 import edu.mateo.back.Metroid.repository.EnemyRepository;
 import edu.mateo.back.Metroid.service.interfaces.IEnemyService;
 
@@ -53,5 +54,10 @@ public class EnemyService implements IEnemyService {
         Enemy enemyToDelete = enemyRepo.findById(id).orElseThrow();
         enemyRepo.deleteById(id);
         System.out.println("Enemy " + enemyToDelete.getName() + " deleted from the logbook.");
+    }
+
+    @Override
+    public List<Enemy> getEnemiesByClass(EnemyClass enemyClass) {
+        return enemyRepo.findByEnemyClass(enemyClass);
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.mateo.back.Metroid.model.entities.Region;
+import edu.mateo.back.Metroid.model.enumerated.Planet;
 import edu.mateo.back.Metroid.repository.RegionRepository;
 import edu.mateo.back.Metroid.service.interfaces.IRegionService;
 
@@ -53,6 +54,11 @@ public class RegionService implements IRegionService {
         Region regionToDelete = regionRepo.findById(id).orElseThrow();
         regionRepo.deleteById(id);
         System.out.println("Region " + regionToDelete.getName() + " deleted from the logbook.");
+    }
+
+    @Override
+    public List<Region> getRegionsByPlanet(Planet planet) {
+        return regionRepo.findByPlanet(planet);
     }
 
 }

@@ -9,5 +9,4 @@ public interface IPowerSuitService {
     public PowerSuit getSuitById(Long id);
     public PowerSuit updateSuit(PowerSuit powerSuit);
     public void deleteSuit(Long id);
-
 }

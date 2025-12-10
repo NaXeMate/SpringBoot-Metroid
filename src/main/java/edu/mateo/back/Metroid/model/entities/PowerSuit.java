@@ -11,6 +11,7 @@ import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -49,7 +50,7 @@ public class PowerSuit {
     private DefenseRating defenseRating;
 
     
-    @OneToMany(mappedBy = "powerSuit")
+    @OneToMany(mappedBy = "powerSuit", fetch = FetchType.LAZY)
     private List<Upgrade> upgrades;
 
     public PowerSuit() {}

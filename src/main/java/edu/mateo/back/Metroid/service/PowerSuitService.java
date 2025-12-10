@@ -54,5 +54,4 @@ public class PowerSuitService implements IPowerSuitService {
         suitRepo.deleteById(id);
         System.out.println("Suit " + suitToDelete.getName() + " deleted from the logbook.");
     }
-
 }

@@ -93,7 +93,5 @@ public class RegionEnemy {
         return "Register for the region " + region.getName() + " and the enemy" + enemy.getName() 
             + ".\n[\nNumber of enemies defeated: " + numDefeated
             + ";\nSpawn Frequency: " + spawnFrequency + ";\n]";
-    }
-
-    
+    }    
 }

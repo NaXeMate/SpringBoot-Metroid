@@ -15,6 +15,7 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -60,10 +61,10 @@ public class Region {
     @Column(name = "coordinates", nullable = false)
     private Coordinates coordinates;
 
-    @ManyToMany(mappedBy = "locations")
+    @ManyToMany(mappedBy = "locations", fetch = FetchType.LAZY)
     private List<Upgrade> upgradesAvailable = new ArrayList<>();
 
-    @OneToMany (mappedBy = "region")
+    @OneToMany (mappedBy = "region", fetch = FetchType.LAZY)
     private List<RegionEnemy> enemyEncounters = new ArrayList<>();
 
     public Region() {}
